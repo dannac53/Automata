@@ -1,10 +1,73 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap");
+
 .card {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  padding-top: 5rem;
+  padding: 3rem;
+  width: 30rem;
+  border-radius: 18px;
+  padding: 2rem;
 }
-.container {
-  background: white;
+.all {
+  background: #f9f9f9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem;
+  font-family: "Montserrat", sans-serif;
+}
+header {
+  height: 50px;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #ad95fd;
+}
+label {
+  padding-top: 12px;
+}
+.group label {
+  width: 100%;
+  font-size: 12px;
+  font-weight: 700;
+  color: #5d6d7e;
+}
+.group input {
+  width: 100%;
+  border-radius: 5px;
+  border: #e5e7e9 solid 1px;
+  padding: 4px 10px;
+  font-size: 12px;
+  color: #cacfd2;
+  font-weight: bold;
+  outline: none;
+}
+input:focus {
+  border-color: #ad95fd;
+}
+input:hover {
+  color: #5d6d7e;
+}
+input::placeholder {
+  color: #cacfd2;
+}
+.btn a,
+button {
+  background: transparent;
+  border: 1px solid #e5e7e9;
+  border-radius: 6px;
+  text-decoration: none;
+  margin: 2rem 3rem 0rem 3rem;
+  font-weight: 600;
+  color: #ad95fd;
+  cursor: pointer;
+  transition: 0.5s;
+}
+.btn :hover {
+  color: #5d6d7e;
+}
+.btn a {
+  padding: 12px;
+}
+.btn button {
+  padding: 10px;
 }
