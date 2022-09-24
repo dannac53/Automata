@@ -1,6 +1,5 @@
 import { Formik, Form, Field } from "formik";
 import { Link } from "react-router-dom";
-import "./Formulario.css";
 
 const validacion = document.getElementById("validacion");
 const inputs = document.querySelectorAll("#validacion input");
