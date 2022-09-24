@@ -1,6 +1,16 @@
 import "./Home.css";
+import { convertExcelToArray } from "../utils/excel";
 
 const Home = () => {
+  const getFile = (event) => {
+    const file = event.target.files[0];
+    convertExcelToArray(file, (result) => {
+      console.log(result);
+    });
+  };
+  const selectFile = () => {
+    document.getElementById("file").click();
+  };
   return (
     <div className="all row">
       <header className="col-12">Tabla Estudiantes</header>
@@ -19,12 +29,19 @@ const Home = () => {
           </button>
         </div>
         <header className="title"> Suppliers</header>
-        <button id="export">
+        <button id="export" onClick={() => selectFile()}>
           <i class="bx bx-export bx-sm"></i>Export
         </button>
         <button id="import">
           <i class="bx bx-import bx-sm"></i>import
         </button>
+        <input
+          type="file"
+          accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+          hidden
+          id="file"
+          onChange={(e) => getFile(e)}
+        />
         <div className="tabla">
           <table className="table">
             <thead>
