@@ -1,12 +1,11 @@
 import "./Home.css";
 import { convertExcelToArray } from "../utils/excel";
+import { validate } from "../utils/validate";
 
 const Home = () => {
   const getFile = (event) => {
     const file = event.target.files[0];
-    convertExcelToArray(file, (result) => {
-      console.log(result);
-    });
+    convertExcelToArray(file, (result) => validate(result));
   };
   const selectFile = () => {
     document.getElementById("file").click();
@@ -16,13 +15,7 @@ const Home = () => {
       <header className="col-12">Tabla Estudiantes</header>
       <div className="card col-12">
         <div className="seccion">
-          <input
-            className="search col-6"
-            type="text"
-            name=""
-            id=""
-            placeholder="Search"
-          />
+          <input className="search col-6" type="text" placeholder="Search" />
           <i class="bx bx-search bx-sm" id="icon"></i>
           <button className="btn-primary btn-lg" id="adduser">
             Add user +
@@ -30,10 +23,10 @@ const Home = () => {
         </div>
         <header className="title"> Suppliers</header>
         <button id="export" onClick={() => selectFile()}>
-          <i class="bx bx-export bx-sm"></i>Export
+          <i className="bx bx-export bx-sm"></i>Importar
         </button>
         <button id="import">
-          <i class="bx bx-import bx-sm"></i>import
+          <i className="bx bx-import bx-sm"></i>Exportar
         </button>
         <input
           type="file"
@@ -46,15 +39,15 @@ const Home = () => {
           <table className="table">
             <thead>
               <tr>
-                <th scope="col"></th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
+                <th></th>
+                <th>First</th>
+                <th>Last</th>
+                <th>Handle</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <th scope="col">
+                <th>
                   <input type="checkbox" />
                 </th>
                 <td>Mark</td>
@@ -62,7 +55,7 @@ const Home = () => {
                 <td>@mdo</td>
               </tr>
               <tr>
-                <th scope="col">
+                <th>
                   <input type="checkbox" />
                 </th>
                 <td>Jacob</td>
@@ -70,10 +63,10 @@ const Home = () => {
                 <td>@fat</td>
               </tr>
               <tr>
-                <th scope="col">
+                <th>
                   <input type="checkbox" />
                 </th>
-                <td colspan="2">Larry the Bird</td>
+                <td>Larry the Bird</td>
                 <td>@twitter</td>
               </tr>
             </tbody>

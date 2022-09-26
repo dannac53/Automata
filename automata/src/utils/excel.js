@@ -3,23 +3,30 @@ const convertExcelToArray = (file, callback) => {
   let workBook = null;
   let jsonData = null;
   const reader = new FileReader();
+  const options = {
+    header: 1,
+    defval: "",
+    blankrows: true,
+    raw: false,
+    dateNF: 'd"/"m"/"yyyy',
+  };
   reader.onload = () => {
     const data = reader.result;
     workBook = xlsx.read(data, { type: "binary" });
     jsonData = workBook.SheetNames.reduce((initial, name) => {
       const sheet = workBook.Sheets[name];
-      initial[name] = xlsx.utils.sheet_to_json(sheet);
+      initial[name] = xlsx.utils.sheet_to_json(sheet, options);
       return initial;
     }, {});
     const rows = jsonData[Object.keys(jsonData)[0]].map((row) => {
       return {
-        code: row?.Codigo,
-        name: row?.Nombre,
-        date: row?.Fecha,
-        address: row?.Direccion,
-        tel: row?.Telefono,
-        phone: row?.Celular,
-        email: row?.Correo,
+        name: row[0],
+        code: row[1],
+        date: row[2],
+        address: row[3],
+        tel: row[4],
+        phone: row[5],
+        email: row[6],
       };
     });
     callback(rows);

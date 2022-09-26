@@ -1,0 +1,2 @@
+const firestoreService = {};
+export { firestoreService };
