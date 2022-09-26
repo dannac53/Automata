@@ -1,6 +1,11 @@
 import { db } from "./firebase";
-import { collection, addDoc, getDocs } from "firebase/firestore";
-import { alert } from "./alert";
+import {
+  collection,
+  addDoc,
+  getDocs,
+  deleteDoc,
+  doc,
+} from "firebase/firestore";
 
 const studentCollectionRef = collection(db, "students");
 
@@ -10,8 +15,10 @@ const firestoreService = {
       .then((response) => console.log(response))
       .catch((badRequest) => console.log(badRequest));
   },
-  getStudents: () => {
-    return getDocs(studentCollectionRef);
+  getStudents: () => getDocs(studentCollectionRef),
+  deleteById: (studentId) => {
+    const docRef = doc(db, "students", studentId);
+    return deleteDoc(docRef);
   },
 };
 export { firestoreService };
