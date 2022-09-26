@@ -1,6 +1,8 @@
 import "./Home.css";
 import { convertExcelToArray } from "../utils/excel";
 import { Link } from "react-router-dom";
+import { validate } from "../utils/validate";
+import { firestoreService } from "../firestore_service";
 
 const Home = () => {
   const getFile = (event) => {
@@ -25,9 +27,9 @@ const Home = () => {
             placeholder="Search"
           />
           <i class="bx bx-search bx-sm" id="icon"></i>
-          <Link to ="/formulario" className="btn-lg" id="adduser">
-          Add student
-            <i class="bx bx-user-plus bx-sm" id="icon2"></i>  
+          <Link to="/formulario" className="btn-lg" id="adduser">
+            Add student
+            <i class="bx bx-user-plus bx-sm" id="icon2"></i>
           </Link>
         </div>
         <div className="btn">

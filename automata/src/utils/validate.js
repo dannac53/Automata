@@ -1,5 +1,7 @@
 import { regExp } from "./regExp";
 import { alert } from "../alert";
+import { firestoreService } from "../firestore_service";
+
 export const validate = (students) => {
   const keys = Object.keys(students[0]);
   const approve = [];
@@ -14,9 +16,14 @@ export const validate = (students) => {
     else rejected.push(student);
   });
   showStudentsNoValid(rejected);
+  saveStudents(approve);
 };
 
 const isMatch = (value, regExp) => regExp.test(value);
+
+const saveStudents = (students) => {
+  students.map((student) => firestoreService.saveStudent(student));
+};
 
 const showStudentsNoValid = (students) => {
   let tr = "";
