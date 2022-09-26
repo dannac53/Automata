@@ -2,39 +2,10 @@
   margin: 0;
   padding: 0;
 }
-
-.contents {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 3rem;
-  font-family: "Montserrat", sans-serif;
-  border: 1px solid black;
-}
-
-.tarjeta {
-  background: #f9f9f9;
-  border: 1px solid blueviolet;
-  border-radius: 10px;
-  justify-items: auto;
-  clear: both;
-}
-
-.desplegables {
-  border: 1px solid magenta;
-  padding: 10px;
-  
-}
-.form-select{
-
-}
-.seccion {
-  padding: 3rem;
+#tarjeta {
   width: 80rem;
-  border-radius: 18px;
-  padding: 2rem;
-  border: 1px solid blue;
 }
+
 .search {
   position: relative;
   margin-left: 40px;
@@ -46,10 +17,12 @@
   border: 2px solid #ad95fd;
 }
 .tabla {
-  border: 1px solid orangered;
-
+  margin-top: 20px;
 }
-
+.tabla tbody i{
+  color: #ad95fd;
+  margin: 5px;
+}
 .search:focus {
   outline: none;
 }
@@ -61,50 +34,29 @@
   color: #ad95fd;
   position: absolute;
   display: block;
-  left: 420px;
-  top: 130px;
+  left: 90px;
+  top: 80px;
 }
 
 #adduser {
   float: right;
   text-align: center;
-  width: 150px;
-  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 230px;
+  height: auto;
   border-radius: 100px;
-  background-color: #ad95fd;
+  background-color: #fff;
 }
 
 .title {
-  float: left;
-  margin-left: 50px;
-  margin-top: 30px;
-  border: 1px solid cyan;
-}
-
-#import {
-  padding: 10px;
-  border-radius: 100px;
-  border: 2px solid #ad95fd;
-  float: right;
-}
-#export {
-  padding: 10px;
-  border-radius: 100px;
-  border: 2px solid #ad95fd;
-  float: right;
-}
-
-#import:hover {
-  background-color: #ad95fd;
-  color: #fff;
-}
-
-#export:hover {
-  background-color: #ad95fd;
-  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center; 
 }
 
 #adduser:hover {
-  background-color: #fff;
-  color: #ad95fd;
+
+  color: #5d6d7e;
 }
