@@ -23,6 +23,11 @@
   color: #ad95fd;
   margin: 5px;
 }
+
+.tabla tbody i:hover{
+ color: #5d6d7e;
+ cursor: pointer;
+}
 .search:focus {
   outline: none;
 }
@@ -53,6 +58,7 @@
   border: 2px solid #ad95fd;
   color: #ad95fd;
   font-weight: bold;
+  margin-top: 35px;
 }
 
 .title {
