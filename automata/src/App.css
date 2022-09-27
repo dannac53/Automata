@@ -37,9 +37,11 @@ label {
   border: #e5e7e9 solid 1px;
   padding: 4px 10px;
   font-size: 12px;
-  color: #cacfd2;
   font-weight: bold;
   outline: none;
+}
+#date {
+  color: #cacfd2;
 }
 input:focus {
   border-color: #ad95fd;
@@ -70,4 +72,13 @@ button {
 }
 .btn button {
   padding: 10px;
+}
+.textError {
+  color: red;
+}
+.groupError label {
+  color: red;
+}
+.groupError input {
+  border-color: red;
 }

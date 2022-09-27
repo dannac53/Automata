@@ -11,9 +11,7 @@ const studentCollectionRef = collection(db, "students");
 
 const firestoreService = {
   saveStudent: (student) => {
-    addDoc(studentCollectionRef, student)
-      .then((response) => console.log(response))
-      .catch((badRequest) => console.log(badRequest));
+    return addDoc(studentCollectionRef, student);
   },
   getStudents: () => getDocs(studentCollectionRef),
   deleteById: (studentId) => {
