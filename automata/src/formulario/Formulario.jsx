@@ -1,10 +1,10 @@
-import { Formik, Form, Field, ErrorMessage } from "formik";
-import { Link, useNavigate } from "react-router-dom";
-import * as Yup from "yup";
-import { regExp } from "../utils/regExp";
-import { firestoreService } from "../firestore_service";
-import { alert } from "../alert";
+import { Field, Form, Formik } from "formik";
 import { useEffect, useState } from "react";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
+import * as Yup from "yup";
+import { alert } from "../alert";
+import { firestoreService } from "../firestore_service";
+import { regExp } from "../utils/regExp";
 
 const validation = Yup.object().shape({
   name: Yup.string().matches(regExp.name, "Nombre no valido").required(),
@@ -19,16 +19,9 @@ const validation = Yup.object().shape({
 });
 
 const Formulario = () => {
-  const [students, setStudents] = useState([]);
-  const getStudents = () => {
-    firestoreService.getStudents().then((response) => {
-      const data = [];
-      response.docs.map((doc) => data.push({ id: doc.id, ...doc.data() }));
-      setStudents(data);
-    });
-  };
   const navigate = useNavigate();
-  const values = {
+  const [id, setId] = useState("");
+  const [values, setValues] = useState({
     name: "",
     code: "",
     date: "",
@@ -36,24 +29,52 @@ const Formulario = () => {
     tel: "",
     phone: "",
     email: "",
+  });
+  const [students, setStudents] = useState([]);
+  const [searchParams] = useSearchParams();
+  const getStudents = () => {
+    firestoreService.getStudents().then((response) => {
+      const data = [];
+      response.docs.map((doc) => data.push({ id: doc.id, ...doc.data() }));
+      setStudents(data);
+    });
+  };
+  const getStudentById = () => {
+    const studentId = searchParams.get("studentId");
+    if (studentId) {
+      firestoreService.getById(studentId).then((response) => {
+        const { id, ...student } = response.data();
+        setId(id);
+        setValues(student);
+      });
+    }
   };
   const goList = () => {
     navigate("../");
   };
   const submit = (values) => {
-    if (isExists(values.code)) {
+    const isEdit = id.length === 0;
+    if (isExists(values.code) && !isEdit) {
       alert.error("Estudiante ya existe");
     } else {
-      firestoreService.saveStudent(values).then(() => {
-        alert.success("Estudiante creado con exito");
-        goList();
-      });
+      firestoreService[isEdit ? "saveStudent" : "updateStudent"](values).then(
+        () => {
+          alert.success(
+            `Estudiante ${isEdit ? "creado" : "actualizado"} con exito`
+          );
+          goList();
+        }
+      );
     }
   };
   const isExists = (code) => {
-    return !!students.find((student) => student.code === code);
+    const student = students.find((student) => student.code === code);
+    return !!student;
   };
-  useEffect(() => getStudents(), []);
+  useEffect(() => {
+    getStudents();
+    //getStudentById();
+  }, []);
   return (
     <div className="all row">
       <header className="col-12">Formulario Estudiantes</header>
@@ -62,8 +83,9 @@ const Formulario = () => {
           initialValues={values}
           validationSchema={validation}
           onSubmit={submit}
+          enableReinitialize={true}
         >
-          {({ errors, touched, dirty, isValid }) => (
+          {({ errors, touched, isValid }) => (
             <Form className="row" id="validacion">
               <div
                 className={`col-12 group ${errors.name ? "groupError" : ""}`}

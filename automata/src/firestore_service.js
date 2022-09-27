@@ -4,6 +4,8 @@ import {
   addDoc,
   getDocs,
   deleteDoc,
+  updateDoc,
+  getDoc,
   doc,
 } from "firebase/firestore";
 
@@ -17,6 +19,14 @@ const firestoreService = {
   deleteById: (studentId) => {
     const docRef = doc(db, "students", studentId);
     return deleteDoc(docRef);
+  },
+  getById: (studentId) => {
+    const docRef = doc(db, "students", studentId);
+    return getDoc(docRef);
+  },
+  updateStudent: (studentId, student) => {
+    const docRef = doc(db, "students", studentId);
+    return updateDoc(docRef, student);
   },
 };
 export { firestoreService };
