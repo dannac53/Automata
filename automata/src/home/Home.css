@@ -38,7 +38,7 @@
   top: 80px;
 }
 
-#adduser {
+.addstudent {
   float: right;
   text-align: center;
   display: flex;
@@ -46,8 +46,13 @@
   align-items: center;
   width: 230px;
   height: auto;
+  padding: 10px;
   border-radius: 100px;
   background-color: #fff;
+  text-decoration: none;
+  border: 2px solid #ad95fd;
+  color: #ad95fd;
+  font-weight: bold;
 }
 
 .title {
@@ -56,7 +61,11 @@
   align-items: center; 
 }
 
-#adduser:hover {
+.addstudent:hover {
 
   color: #5d6d7e;
+}
+
+.addstudent:active{
+  color: black;
 }
