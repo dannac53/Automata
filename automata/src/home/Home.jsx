@@ -1,11 +1,10 @@
-import "./Home.css";
-import { convertExcelToArray, convertArrayToFile } from "../utils/excel";
-import { Link, useNavigate, createSearchParams } from "react-router-dom";
-import { validate } from "../utils/validate";
-import { firestoreService } from "../firestore_service";
-import { useState } from "react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { alert } from "../alert";
+import { firestoreService } from "../firestore_service";
+import { convertArrayToFile, convertExcelToArray } from "../utils/excel";
+import { validate } from "../utils/validate";
+import "./Home.css";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -127,17 +126,6 @@ const Home = () => {
                     <td>{student.phone}</td>
                     <td>{student.email}</td>
                     <td>
-                      <i
-                        onClick={() =>
-                          navigate({
-                            pathname: "/formulario",
-                            search: createSearchParams({
-                              studentId: student.id,
-                            }).toString(),
-                          })
-                        }
-                        className="bx bxs-edit bx-sm"
-                      ></i>
                       <i
                         onClick={() => deleteById(student.id)}
                         className="bx bxs-trash bx-sm"
